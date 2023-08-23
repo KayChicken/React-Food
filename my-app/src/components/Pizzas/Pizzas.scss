@@ -1,0 +1,145 @@
+.pizzas__section {
+    margin-top: 40px;
+}
+
+
+.pizza {
+
+
+    &__choose {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+
+    }
+
+
+
+
+    &__category {
+        ul {
+
+            display: flex;
+            column-gap: 10px;
+
+            li {
+                cursor: pointer;
+                list-style: none;
+                padding: 10px 20px;
+                background-color: $gray;
+                border-radius: 30px;
+                transition: all 0.1s ease-in-out;
+
+
+                &:hover {
+                    background-color: $orange;
+                }
+
+            }
+
+            li.active {
+                color: #fff;
+                background-color: #282828;
+            }
+
+
+
+        }
+    }
+
+
+    &__sort {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin-right: 5px;
+        }
+
+        p {
+            >span {
+                cursor: pointer;
+                color: $orange;
+                border-bottom: 1px dashed;
+            }
+        }
+
+
+
+        .sort__popup {
+            background-color: #fff;
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            right: 0;
+
+            ul {
+
+
+                li {
+                    cursor: pointer;
+                    padding: 10px 14px;
+
+
+
+
+                }
+
+
+                li:hover {
+                    color: $orange;
+                    background-color: #FE5F1E0D;
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    &__block {
+        margin-top: 40px;
+    }
+
+
+    &__cards {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 50px;
+        column-gap: 50px;
+    }
+
+
+
+
+}
+
+
+@media (max-width : 1100px) {
+    .pizza__cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width : 800px) {
+    .pizza__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width : 560px) {
+    .pizza__cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
