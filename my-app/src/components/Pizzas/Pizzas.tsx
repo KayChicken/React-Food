@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PizzaCard from './PizzaCard/PizzaCard';
+import PizzaCard, { IPizzaCardProps } from './PizzaCard/PizzaCard';
 import axios from 'axios';
 import Skeleton from '../Skeleton/Skeleton';
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,14 +10,6 @@ import { RootState } from '../../store/store';
 
 
 
-interface IPizzas {
-    name: string,
-    imageUrl: string,
-    price: string,
-    sizes: string[],
-    types: string[]
-
-}
 
 
 
@@ -50,7 +42,7 @@ const Pizzas = () => {
 
     const [activeModal, setActiveModal] = useState<boolean>(false)
     const [pizzaLoading, setPizzaLoading] = useState<boolean>(true)
-    const [pizzas, setPizzas] = useState<IPizzas[]>([])
+    const [pizzas, setPizzas] = useState<IPizzaCardProps[]>([])
 
 
 
@@ -72,6 +64,7 @@ const Pizzas = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("Update")
             try {
                 setPizzaLoading(true)
                 
@@ -80,6 +73,7 @@ const Pizzas = () => {
                 const response = await axios.get(`https://630b6a73ed18e8251652fc87.mockapi.io/pizzas?${category}&${sortBy}`);
                 setPizzas(response.data);
                 setPizzaLoading(false)
+                
             } catch (error) {
 
             }
@@ -91,10 +85,11 @@ const Pizzas = () => {
 
 
 
+    
 
     useEffect(() => {
 
-
+        console.log("Update")
 
         const handleClick = (e: MouseEvent) => {
 
@@ -120,7 +115,7 @@ const Pizzas = () => {
                         <div className="pizza__category">
                             <ul>
                                 <li className={categoryId === null ? 'active' : ''} onClick={() => { dispatch(changeCategory(null)) }}>Все</li>
-                                {categories.map((category, id) => (<li className={categoryId === id ? 'active' : ''} onClick={() => { dispatch(changeCategory(id)) }}>{category}</li>)
+                                {categories.map((category, id) => (<li  key={category} className={categoryId === id ? 'active' : ''} onClick={() => { dispatch(changeCategory(id)) }}>{category}</li>)
                                 )}
                             </ul>
                         </div>
@@ -144,9 +139,10 @@ const Pizzas = () => {
                     <div className="pizza__block">
                         <h1>Все пиццы</h1>
                         <div className="pizza__cards">
-                            {pizzaLoading ? [...new Array(5)].map(() => (<Skeleton></Skeleton>)) : (
+                            {pizzaLoading ? [...new Array(5)].map((__,id) => (<Skeleton key={id}></Skeleton>)) : (
                                 pizzas.map((item) => (
-                                    <PizzaCard title={item.name} dough={item.types} size={item.sizes} price={item.price} imageUrl={item.imageUrl} />
+                                    <PizzaCard key={item.imageUrl} id={item.id} name={item.name} sizes={item.sizes} price={item.price} imageUrl={item.imageUrl} types={item.types} />
+                                
                                 ))
                             )}
                         </div>

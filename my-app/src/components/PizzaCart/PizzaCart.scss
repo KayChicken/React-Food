@@ -1,0 +1,60 @@
+.pizza__cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__img {
+        max-width: 80px;
+        width: 100%;
+        min-height: 80px;
+       
+        margin-right: 15px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__info {
+        max-width: 300px;
+        width: 100%;
+        margin-right: 68px;
+    }
+
+
+    &__counter {
+        display: flex;
+        align-items: center;
+        max-width: 105px;
+        width: 100%;
+        justify-content: space-between;
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+
+    &__left__col {
+        align-items: center;
+        display: flex;
+        flex: 1;
+
+    }
+
+    &__right__col {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+
+    &__remove {
+        svg {
+            cursor: pointer;
+        }
+    }
+
+}

@@ -4,8 +4,9 @@
 @import './components/Pizzas/Pizzas.scss';
 @import './components/Pizzas/PizzaCard/PizzaCard.scss';
 @import './components/Header/SearchBlock/SearchBlock.scss';
-
-
+@import './pages/Cart.scss';
+@import './components/FullCart/FullCart.scss';
+@import './components/PizzaCart/PizzaCart.scss';
 
 
 
@@ -23,6 +24,10 @@
 }
 
 
+a {
+    text-decoration: none;
+    color : #000;
+}
 
 li {
     list-style: none;
