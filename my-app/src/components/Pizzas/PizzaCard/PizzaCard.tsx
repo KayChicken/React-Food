@@ -59,7 +59,7 @@ const PizzaCard: React.FC<IPizzaCardProps> = ({ id, title, category, data }) => 
             <div className="pizza__settings">
                 <div className="settings__row">
                     <ul>
-                        {data.map((type, id) => (<li key={type.imageUrl} className={currentDough === id ? 'active' : ''} onClick={() => { setCurrentDough(id) }}>{type.name}</li>))}
+                        {data.map((type, id) => (<li key={Math.random().toString(36).substring(7)} className={currentDough === id ? 'active' : ''} onClick={() => { setCurrentDough(id) }}>{type.name}</li>))}
                     </ul>
                 </div>
                 <div className="settings__row">
