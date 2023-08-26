@@ -9,20 +9,22 @@ export interface IPizzaCardProps {
     sizes: string[],
     price: string,
     imageUrl : string,
-    types : string[]
+    types : string[],
+    count? : number | undefined 
 
 }
 
 
 
-const PizzaCard: React.FC<IPizzaCardProps> = ({ id, name, sizes, price, imageUrl, types }) => {
+const PizzaCard: React.FC<IPizzaCardProps> = ({ id, name, sizes, price, imageUrl, types, count }) => {
 
 
-    
+   
+
 
     const [currentDough, setCurrentDough] = useState<number>(0)
     const [currentSize, setCurrentSize] = useState<number>(0)
-    const [currentCount , setCurrentCount] = useState<number>(0)
+    
 
 
 
@@ -33,9 +35,9 @@ const PizzaCard: React.FC<IPizzaCardProps> = ({ id, name, sizes, price, imageUrl
 
 
     const cartAdding = () => {
-        const pizza = {id,name,sizes,price,imageUrl,types}
+        const pizza = {id,name,sizes : sizes[currentSize],price,imageUrl,types : types[currentDough]}
         dispatch(addCart(pizza))
-        setCurrentCount(currentCount + 1)
+       
         
     }
 
@@ -67,9 +69,9 @@ const PizzaCard: React.FC<IPizzaCardProps> = ({ id, name, sizes, price, imageUrl
                             <path d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z" fill="white" />
                         </svg>
                         Добавить
-                        {currentCount > 0 && (
+                        {count && (
                             <div className='add__count'>
-                                <span>{currentCount}</span>
+                                <span>{count}</span>
                             </div>
                         )}
 

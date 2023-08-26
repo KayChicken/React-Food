@@ -5,6 +5,7 @@ import Skeleton from '../Skeleton/Skeleton';
 import { useSelector, useDispatch } from 'react-redux'
 import { changeCategory, changeSort } from '../../store/slices/filterSlice';
 import { RootState } from '../../store/store';
+import { Statement } from 'typescript';
 
 
 
@@ -37,6 +38,7 @@ const Pizzas = () => {
     ]
 
     const { categoryId, sortId } = useSelector((state: RootState) => state.filter)
+    const {cart} = useSelector((state : RootState) => state.cart)
     const dispatch = useDispatch()
 
 
@@ -64,7 +66,7 @@ const Pizzas = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("Update")
+         
             try {
                 setPizzaLoading(true)
                 
@@ -89,7 +91,7 @@ const Pizzas = () => {
 
     useEffect(() => {
 
-        console.log("Update")
+        
 
         const handleClick = (e: MouseEvent) => {
 
@@ -141,7 +143,7 @@ const Pizzas = () => {
                         <div className="pizza__cards">
                             {pizzaLoading ? [...new Array(5)].map((__,id) => (<Skeleton key={id}></Skeleton>)) : (
                                 pizzas.map((item) => (
-                                    <PizzaCard key={item.imageUrl} id={item.id} name={item.name} sizes={item.sizes} price={item.price} imageUrl={item.imageUrl} types={item.types} />
+                                    <PizzaCard key={item.imageUrl} id={item.id} name={item.name} sizes={item.sizes} price={item.price} imageUrl={item.imageUrl} types={item.types} count={null ?? cart.find((obj) => obj.id === item.id)?.count} />
                                 
                                 ))
                             )}
