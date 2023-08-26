@@ -10,13 +10,13 @@ interface IInitialStateProps {
 
 
 export interface IItemCart {
-    id : string,
-    name: string,
-    sizes: string,
-    price: string,
+    id : string, 
+    title : string, 
+    size :  string , 
+    type : string,
+    price : number,
     imageUrl : string,
-    types : string,
-    count? : number | undefined 
+    count? : number
 }
 
 const initialState: IInitialStateProps = {
@@ -34,7 +34,7 @@ export const cartSlice = createSlice({
     reducers: {
         addCart: (state, action: PayloadAction<IItemCart>) => {
 
-            const findItem = state.cart.find(obj => obj.id === action.payload.id);
+            const findItem = state.cart.find(obj => obj.id === action.payload.id && obj.type === action.payload.type && obj.size === action.payload.size);
 
             if (findItem) {
                 findItem.count = (findItem.count ?? 0) + 1;
@@ -48,23 +48,25 @@ export const cartSlice = createSlice({
         },
 
 
-        addItemCart : (state,action : PayloadAction<string>) => {
-            const findItem = state.cart.find((obj) => obj.id === action.payload)
+        addItemCart : (state,action : PayloadAction<{id : string , type : string , size : string}>) => {
+            const findItem = state.cart.find((obj) => obj.id === action.payload.id && obj.type === action.payload.type && obj.size === action.payload.size)
             if (findItem && findItem.count) {
                findItem.count++
             }
         },
 
 
-        removeItemCart: (state, action: PayloadAction<string>) => {
+        removeItemCart: (state, action: PayloadAction<{id : string , type : string , size : string}>) => {
 
-            const findItem = state.cart.find((obj) => obj.id === action.payload)
+            const findItem = state.cart.find((obj) => obj.id === action.payload.id && obj.type === action.payload.type && obj.size === action.payload.size)
+            
             if (findItem && findItem.count) {
                 if (findItem.count > 1) {
                     findItem.count--
                 }
                 else {
-                    state.cart = state.cart.filter((obj) => obj.id !== action.payload)
+                    
+                    state.cart = state.cart.filter((obj) => findItem !== obj)
                 }
             }
                 
@@ -75,11 +77,11 @@ export const cartSlice = createSlice({
 
 
 
-        clearItemCart: (state, action: PayloadAction<string>) => {
+        clearItemCart: (state, action: PayloadAction<{id : string , type : string , size : string}>) => {
 
-            const findItem = state.cart.find((obj) => obj.id === action.payload)
+            const findItem = state.cart.find((obj) => obj.id === action.payload.id && obj.type === action.payload.type && obj.size === action.payload.size)
             if (findItem) {
-                state.cart = state.cart.filter((obj) => obj.id !== action.payload)
+                state.cart = state.cart.filter((obj) => findItem !== obj)
             }
                 
                 

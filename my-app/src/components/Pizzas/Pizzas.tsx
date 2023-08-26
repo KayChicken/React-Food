@@ -117,7 +117,7 @@ const Pizzas = () => {
                         <div className="pizza__category">
                             <ul>
                                 <li className={categoryId === null ? 'active' : ''} onClick={() => { dispatch(changeCategory(null)) }}>Все</li>
-                                {categories.map((category, id) => (<li  key={category} className={categoryId === id ? 'active' : ''} onClick={() => { dispatch(changeCategory(id)) }}>{category}</li>)
+                                {categories.map((category, id) => (<li  key={id} className={categoryId === id ? 'active' : ''} onClick={() => { dispatch(changeCategory(id)) }}>{category}</li>)
                                 )}
                             </ul>
                         </div>
@@ -143,7 +143,7 @@ const Pizzas = () => {
                         <div className="pizza__cards">
                             {pizzaLoading ? [...new Array(5)].map((__,id) => (<Skeleton key={id}></Skeleton>)) : (
                                 pizzas.map((item) => (
-                                    <PizzaCard key={item.imageUrl} id={item.id} name={item.name} sizes={item.sizes} price={item.price} imageUrl={item.imageUrl} types={item.types} count={null ?? cart.find((obj) => obj.id === item.id)?.count} />
+                                    <PizzaCard key={item.id} id={item.id} title={item.title} data={item.data} category={item.category}  />
                                 
                                 ))
                             )}

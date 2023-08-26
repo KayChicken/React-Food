@@ -12,7 +12,7 @@ const Header = () => {
     const {cart}  = useSelector((state: RootState) => state.cart)
 
     const countPizza = cart.reduce((sum , obj : IItemCart) => {return sum + (obj.count ?? 0)} , 0)
-    const pricePizza = cart.reduce((sum , obj : IItemCart) => {return sum + (parseInt(obj.price) * (obj.count ?? 0)) } , 0)
+    const pricePizza = cart.reduce((sum , obj : IItemCart) => {return sum + (obj.price * (obj.count ?? 0)) } , 0)
 
     return (
         <header className='header'>
