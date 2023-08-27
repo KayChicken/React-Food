@@ -72,7 +72,8 @@ const Pizzas = () => {
                 
                 const category = categoryId ? `category=${categoryId}`: ''
                 const sortBy = `sortBy=${sortGroup[sortId].sorting}`
-                const response = await axios.get(`https://630b6a73ed18e8251652fc87.mockapi.io/pizzas?${category}&${sortBy}`);
+                // const response = await axios.get(`https://630b6a73ed18e8251652fc87.mockapi.io/pizzas?${category}&${sortBy}`);
+                const response = await axios.get(`http://localhost:4040/pizzas`);
                 setPizzas(response.data);
                 setPizzaLoading(false)
                 
@@ -143,7 +144,7 @@ const Pizzas = () => {
                         <div className="pizza__cards">
                             {pizzaLoading ? [...new Array(5)].map((__,id) => (<Skeleton key={id}></Skeleton>)) : (
                                 pizzas.map((item) => (
-                                    <PizzaCard key={item.id} id={item.id} title={item.title} data={item.data} category={item.category}  />
+                                    <PizzaCard key={item._id} _id={item._id} title={item.title} data={item.data} category={item.category}  />
                                 
                                 ))
                             )}

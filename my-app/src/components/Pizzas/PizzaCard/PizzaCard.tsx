@@ -4,7 +4,7 @@ import { RootState } from '../../../store/store';
 import { addCart } from '../../../store/slices/cartSlice';
 
 export interface IPizzaCardProps {
-    id: string,
+    _id: number,
     title: string,
     category: string,
     data: {
@@ -22,7 +22,7 @@ export interface IPizzaCardProps {
 
 
 
-const PizzaCard: React.FC<IPizzaCardProps> = ({ id, title, category, data }) => {
+const PizzaCard: React.FC<IPizzaCardProps> = ({ _id, title, category, data }) => {
 
 
 
@@ -33,7 +33,7 @@ const PizzaCard: React.FC<IPizzaCardProps> = ({ id, title, category, data }) => 
     const [currentDough, setCurrentDough] = useState<number>(0)
     const [currentSize, setCurrentSize] = useState<number>(0)
 
-    const count = cart.find((item) => item.id === id && item.type === data[currentDough].name && item.size === data[currentDough].sizes[currentSize].size)?.count
+    const count = cart.find((item) => item._id === _id && item.type === data[currentDough].name && item.size === data[currentDough].sizes[currentSize].size)?.count
     let currentPrice: number = parseInt(data[currentDough].basePrice + data[currentDough].sizes[currentSize].addPrice)
 
 
@@ -43,7 +43,7 @@ const PizzaCard: React.FC<IPizzaCardProps> = ({ id, title, category, data }) => 
 
 
     const cartAdding = () => {
-        const pizza = { id, title, size: data[currentDough].sizes[currentSize].size, type: data[currentDough].name, imageUrl: data[currentDough].imageUrl, price: currentPrice }
+        const pizza = { _id, title, size: data[currentDough].sizes[currentSize].size, type: data[currentDough].name, imageUrl: data[currentDough].imageUrl, price: currentPrice }
         dispatch(addCart(pizza))
 
 

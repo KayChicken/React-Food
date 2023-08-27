@@ -47,8 +47,8 @@ const FullCart: React.FC<IFullCartProps> = ({ cart }) => {
             </div>
 
             <div className='cart__pizzas'>
-                {cart.map(({ id, imageUrl, title, size, type, price , count }) => (
-                    <PizzaCart key={`${title} ${size} ${type}`} id={id} imageUrl={imageUrl} title={title} size={size} type={type} price={price} count={count} />
+                {cart.map(({ _id, imageUrl, title, size, type, price , count }) => (
+                    <PizzaCart key={`${title} ${size} ${type}`} _id={_id} imageUrl={imageUrl} title={title} size={size} type={type} price={price} count={count} />
                 ))}
 
             </div>
